@@ -1,12 +1,12 @@
-let videos = document.querySelectorAll('.js-video');
+// Loop over all video tags and generate src attribute with correct data
+for (let i = 0; i < videos.length; i++) {
 
-    // Loop over all video tags and generate src attribute with correct data
-    for (let i = 0; i < videos.length; i++) {
+    // Generate video tag on click 
+    videos[i].addEventListener('click', function () {
 
-      // Generate video tag on click 
-      videos[i].addEventListener('click', function () {
+      const dataSrc = 'data-video-src';
 
-        const dataSrc = 'data-video-src';
+      if (!this.classList.contains('is-playing')) {
 
         // Create video element and set attributes 
         const element = document.createElement("video");
@@ -33,5 +33,13 @@ let videos = document.querySelectorAll('.js-video');
 
         // Auto play video once loaded
         this.querySelector('video').play();
-      });
-    }
+
+      }
+
+      // If video generated and 'is playing' do nothing
+      if (this.classList.contains('is-playing')) {
+        return false;
+      }
+
+    });
+}
